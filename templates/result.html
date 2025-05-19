@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Credit Approval Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 450px;
+    }
+    .approved {
+      color: #2e7d32;
+      font-weight: bold;
+      font-size: 28px;
+    }
+    .rejected {
+      color: #c62828;
+      font-weight: bold;
+      font-size: 28px;
+    }
+    .home-button {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      background: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .status-image {
+      width: 200px;
+      margin-top: 15px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Hello {{ name }}</h2>
+    <p>Your Credit Card Application Result:</p>
+
+    {% if prediction == "Approved" %}
+      <div class="approved">😊 {{ prediction }}</div>
+
+      <!-- ✅ Image for Approved -->
+      <img src="{{ url_for('static', filename='approved-card.png') }}" alt="Approved Card" class="status-image">
+
+    {% else %}
+      <div class="rejected">😞 {{ prediction }}</div>
+
+      <!-- ✅ Image for Rejected -->
+      <img src="{{ url_for('static', filename='rejected-card.png') }}" alt="Rejected Card" class="status-image">
+
+    {% endif %}
+    <h3>Estimated Credit Score: {{ estimated_credit_score }}</h3>
+    <h3>Rule-Based Credit Score: {{ score }}/6</h3>
+    <p>(4 or more = strong profile, 0–1 = weak profile)</p>
+
+    <a href="/" class="home-button">Go to Home</a>
+
+    <audio id="voice-success" src="{{ url_for('static', filename='credit_approved_voice.mp3') }}"></audio>
+    <audio id="voice-failure" src="{{ url_for('static', filename='credit_rejected_voice.mp3') }}"></audio>
+
+    <script>
+      window.onload = function () {
+        {% if prediction == "Approved" %}
+          document.getElementById('voice-success').play();
+        {% else %}
+          document.getElementById('voice-failure').play();
+        {% endif %}
+      };
+    </script>
+  </div>
+</body>
+</html>

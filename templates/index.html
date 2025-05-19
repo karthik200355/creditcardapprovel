@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Credit Approval</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 10px;
+    }
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #aaa;
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Credit Approval Form</h2>
+    <form action="{{ url_for('predict') }}" method="post">
+      <label for="FullName">Full Name:</label>
+      <input type="text" id="FullName" name="FullName" required>
+
+      <label for="Surname">Surname:</label>
+      <input type="text" id="Surname" name="Surname" required>
+
+      <label for="Gender">Gender:</label>
+      <select id="Gender" name="Gender" required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <label for="Age">Age:</label>
+      <input type="number" step="0.1" id="Age" name="Age" min="23" max="70" required>
+
+      <label for="Debt">Debt:</label>
+      <input type="number" step="0.01" id="Debt" name="Debt" required>
+
+      <label for="Married">Married:</label>
+      <select id="Married" name="Married" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Unknown">Unknown</option>
+      </select>
+
+      <label for="BankCustomer">Bank Customer:</label>
+      <select id="BankCustomer" name="BankCustomer" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="Partial">Partial</option>
+        <option value="High">High</option>
+      </select>
+
+      <label for="EducationLevel">Education Level:</label>
+      <select id="EducationLevel" name="EducationLevel" required>
+        <option value="">Select</option>
+        <option value="HighSchool">HighSchool</option>
+        <option value="Undergraduate">Undergraduate</option>
+        <option value="Graduate">Graduate</option>
+      </select>
+
+      <label for="Ethnicity">Ethnicity:</label>
+      <select id="Ethnicity" name="Ethnicity" required>
+        <option value="">Select</option>
+        <option value="Asian">Asian</option>
+        <option value="White">White</option>
+        <option value="Black">Black</option>
+      </select>
+
+      <label for="YearsEmployed">Years Employed:</label>
+      <input type="number" step="0.1" id="YearsEmployed" name="YearsEmployed" required>
+
+      <label for="PriorDefault">Prior Default:</label>
+      <select id="PriorDefault" name="PriorDefault" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label for="Employed">Employed:</label>
+      <select id="Employed" name="Employed" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label for="DriversLicense">Driver’s License:</label>
+      <select id="DriversLicense" name="DriversLicense" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label for="Citizen">Citizen:</label>
+      <select id="Citizen" name="Citizen" required>
+        <option value="">Select</option>
+        <option value="Indian">Indian</option>
+        <option value="Other">Other</option>
+        <option value="Unknown">Unknown</option>
+      </select>
+
+      <label for="Income">Income:</label>
+      <input type="number" step="0.01" id="Income" name="Income" required>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>
